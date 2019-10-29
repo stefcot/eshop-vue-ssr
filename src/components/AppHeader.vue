@@ -138,6 +138,7 @@ export default {
   .state {
 
     @include h-box();
+
     @include box-center();
 
     position: absolute;
@@ -170,7 +171,9 @@ export default {
   }
 
   .cart-button {
+
     &.animate {
+
       .button-badge {
         animation: cart 0.5s 0.5s cubic-bezier(0, 0, 0.2, 1);
       }
@@ -179,10 +182,12 @@ export default {
 }
 
 @keyframes cart {
+
   0%,
   100% {
     transform: none;
   }
+
   30% {
     transform: scale(1.4);
   }

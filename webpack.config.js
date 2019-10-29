@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -21,7 +22,7 @@ module.exports = {
         test: /\.scss$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: 'vue-style-loader',
           },
           {
             loader: 'css-loader',
@@ -30,13 +31,9 @@ module.exports = {
             loader: 'postcss-loader'
           },
           {
-            loader: 'resolve-url-loader'
-          },
-          {
             loader: 'sass-loader',
             options: {
-              data: "@import '@/styles/_common.scss'",
-              sourceMap: true
+              prependData: `@import "${path.resolve(__dirname, 'src/styles/_common.scss')}";`
             }
           }
         ],
@@ -45,16 +42,6 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          loaders: {
-            loader: 'sass-loader',
-            options: {
-              data: "@import '@/styles/_common.scss'",
-              sourceMap: true
-            }
-          }
-          // other vue-loader options go here
-        }
       },
       {
         test: /\.js$/,
@@ -85,7 +72,10 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new VueLoaderPlugin(),
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {

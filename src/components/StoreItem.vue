@@ -126,6 +126,7 @@ export default {
   }
 
   &.discount {
+
     &:hover {
       background: linear-gradient(
         to right,

@@ -1,9 +1,9 @@
 .actions {
-h-box();
+ @include h-box();
 
   > * {
     flex: 100% 1 1;
-  space-between-x(12px);
+    @include space-between-x(12px);
   }
 }
 
@@ -25,10 +25,6 @@ h-box();
 
 .empty {
   height: 70px;
-
-  @media ($small-screen) {
-  font-size: 22px;
-}
 }
 
 .hero {
@@ -146,12 +142,5 @@ h-box();
 
   100% {
     transform: scale(0);
-  }
-}
-
-// Mobile
-@media ($not-small-screen) {
-  .mobile-only {
-    display: none;
   }
 }
