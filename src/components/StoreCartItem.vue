@@ -4,179 +4,193 @@
     <StoreItemInfos :item="item.storeItem" />
     <div class="actions">
       <div class="auto-hide">
-        <BaseButton
-          class="icon-button"
-          icon="add"
-          @click="addOne"
-        />
+        <BaseButton class="icon-button" icon="add" @click="addOne" />
       </div>
       <div class="count">
         <span class="prefix">x</span>
-        <input
-          type="number"
-          class="value"
-          v-model.number="countModel"
-        />
+        <input type="number" class="value" v-model.number="countModel" />
       </div>
       <div class="auto-hide">
-        <BaseButton
-          class="icon-button"
-          icon="remove"
-          @click="removeOne"
-        />
-        <BaseButton
-          class="icon-button"
-          icon="delete"
-          @click="removeAll"
-        />
+        <BaseButton class="icon-button" icon="remove" @click="removeOne" />
+        <BaseButton class="icon-button" icon="delete" @click="removeAll" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import StoreItemInfos from './StoreItemInfos.vue'
+import { mapActions } from "vuex";
+import StoreItemInfos from "./StoreItemInfos.vue";
 
 export default {
   components: {
-    StoreItemInfos,
+    StoreItemInfos
   },
 
   props: {
     item: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
 
   computed: {
     countModel: {
-      get () {
-        return this.item.count
+      get() {
+        return this.item.count;
       },
-      set (value) {
+      set(value) {
         this.setCartItemCount({
           id: this.item.id,
-          count: value,
-        })
-      },
-    },
+          count: value
+        });
+      }
+    }
   },
 
   methods: {
-    ...mapActions('cart', [
-      'addStoreItemToCart',
-      'removeStoreItemFromCart',
-      'removeCartItem',
-      'setCartItemCount',
+    ...mapActions("cart", [
+      "addStoreItemToCart",
+      "removeStoreItemFromCart",
+      "removeCartItem",
+      "setCartItemCount"
     ]),
 
-    addOne () {
+    addOne() {
       this.addStoreItemToCart({
-        id: this.item.id,
-      })
+        id: this.item.id
+      });
     },
 
-    removeOne () {
+    removeOne() {
       this.removeStoreItemFromCart({
-        id: this.item.id,
-      })
+        id: this.item.id
+      });
     },
 
-    removeAll () {
+    removeAll() {
       this.removeCartItem({
-        id: this.item.id,
-      })
-    },
-  },
-}
+        id: this.item.id
+      });
+    }
+  }
+};
 </script>
 
-<style lang="stylus" scoped>
-@import "../styles/imports"
+<style lang="scss" scoped>
+.store-cart-item {
 
-.store-cart-item
-  h-box()
-  box-center()
-  padding 12px
-  padding-left 18px
-  border-radius 3px
-  user-select none
-  cursor default
+  @include h-box();
 
-  .base-image
-    width 70px
-    height @width
-    margin-right 12px
+  @include box-center();
 
-  .store-item-infos
-    flex 1
+  padding: 12px;
+  padding-left: 18px;
+  border-radius: 3px;
+  user-select: none;
+  cursor: default;
 
-    >>> .price
-      font-size 24px
+  .base-image {
+    width: 70px;
+    height: 70px;
+    margin-right: 12px;
+  }
 
-    >>> .rating
-      display none
+  .store-item-infos {
+    flex: 1;
 
-  .actions
-    h-box()
-    box-center()
+    .price {
+      font-size: 24px;
+    }
 
-    .count
-      font-size 24px
-      font-weight lighter
-      padding 0 6px
-      h-box()
-      transition all .3s cubic-bezier(0, 0, 0.2, 1)
-      margin-right 0
+    .rating {
+      display: none;
+    }
+  }
 
-      .prefix
-        color $md-grey-300
-        width 0
-        padding-right 16px
-        margin-left -@padding-right
-        transition all .3s
+  .actions {
 
-      .value
-        color $color-primary
-        display inline-block
-        width 28px
-        text-align center
-        font-weight lighter
-        padding 0
-        background none
-        border-bottom solid 1px transparent
-        transition all .3s
+    @include h-box();
 
-    .auto-hide
-      h-box()
-      box-center()
-      max-width 0
-      opacity 0
-      transform scale(.9)
-      white-space nowrap
-      transition all .3s cubic-bezier(0, 0, 0.2, 1), opacity .1s
+    @include box-center();
 
-    >>> > *,
-    .auto-hide >>> > *
-      space-between-x(8px)
+    .count {
+      font-size: 24px;
+      font-weight: lighter;
+      padding: 0 6px;
 
-  &:hover
-    background rgba($color-primary, .1)
+      @include h-box();
 
-    .actions
-      .count
-        margin-right 8px
+      transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+      margin-right: 0;
+    }
 
-        .prefix
-          opacity 0
+    .prefix {
+      color: $md-grey-300;
+      width: 0;
+      padding-right: 16px;
+      margin-left: -16px;
+      transition: all 0.3s;
+    }
 
-        .value
-          border-bottom-color $color-primary
+    .value {
+      color: $color-primary;
+      display: inline-block;
+      width: 28px;
+      text-align: center;
+      font-weight: lighter;
+      padding: 0;
+      background: none;
+      border-bottom: solid 1px transparent;
+      transition: all 0.3s;
+    }
 
-      .auto-hide
-        max-width 100px
-        opacity 1
-        transform none
+    .auto-hide {
+
+      @include h-box();
+
+      @include box-center();
+
+      max-width: 0;
+      opacity: 0;
+      transform: scale(0.9);
+      white-space: nowrap;
+      transition: all 0.3s cubic-bezier(0, 0, 0.2, 1), opacity 0.1s;
+    }
+
+    > *,
+    .auto-hide {
+
+      > * {
+
+        @include space-between-x(8px);
+      }
+    }
+  }
+
+  &:hover {
+    background: rgba($color-primary, 0.1);
+
+    .actions {
+
+      .count {
+        margin-right: 8px;
+
+        .prefix {
+          opacity: 0;
+        }
+
+        .value {
+          border-bottom-color: $color-primary;
+        }
+      }
+
+      .auto-hide {
+        max-width: 100px;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+}
 </style>

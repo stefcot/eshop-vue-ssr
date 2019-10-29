@@ -12,15 +12,16 @@
   </BasePage>
 </template>
 
-<style lang="stylus" scoped>
-@import "../styles/imports"
+<style lang="scss" scoped>
+.page-checkout {
+  padding-top: 100px;
+}
 
-.page-checkout
-  padding-top 100px
+p {
+  text-align: center;
+}
 
-p
-  text-align: center
-
-.icon
-  color $md-green
+.icon {
+  color: $md-green;
+}
 </style>

@@ -16,116 +16,131 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import DiscountMixin from '../mixins/discount'
-import StoreItemInfos from './StoreItemInfos.vue'
-import { flyingImage } from '../utils/animations'
+import { mapActions } from "vuex";
+import DiscountMixin from "../mixins/discount";
+import StoreItemInfos from "./StoreItemInfos.vue";
+import { flyingImage } from "../utils/animations";
 
 export default {
-  mixins: [
-    DiscountMixin(),
-  ],
+  mixins: [DiscountMixin()],
 
   components: {
-    StoreItemInfos,
+    StoreItemInfos
   },
 
   props: {
     item: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
 
   computed: {
-    cssClass () {
+    cssClass() {
       return {
-        discount: this.discount,
-      }
-    },
+        discount: this.discount
+      };
+    }
   },
 
   methods: {
-    ...mapActions('cart', [
-      'addStoreItemToCart',
-    ]),
+    ...mapActions("cart", ["addStoreItemToCart"]),
 
-    addToCart () {
+    addToCart() {
       this.addStoreItemToCart({
-        id: this.item.id,
-      })
+        id: this.item.id
+      });
 
       // Animation
       flyingImage({
         el: this.$refs.image.$el,
-        targetEl: document.querySelector('.cart-animation-target'),
+        targetEl: document.querySelector(".cart-animation-target"),
         imageUrl: this.item.img,
-        imageClass: 'store-item',
-      })
-    },
-  },
-}
+        imageClass: "store-item"
+      });
+    }
+  }
+};
 </script>
 
-<style lang="stylus" scoped>
-@import "../styles/imports"
+<style lang="scss" scoped>
+.store-item {
 
-.store-item
-  h-box()
-  padding 12px
-  border-radius 3px
-  user-select none
-  cursor default
+  @include h-box();
 
-  .image
-    margin-right 12px
-    position relative
-    cursor pointer
-    transition all .3s cubic-bezier(0.0, 0.0, 0.2, 1)
+  padding: 12px;
+  border-radius: 3px;
+  user-select: none;
+  cursor: default;
 
-    .base-image
-      width 100px
-      height @width
+  .image {
+    margin-right: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
 
-    .icon
-      color $md-white
-      position absolute
-      top 0
-      bottom 0
-      left 0
-      right 0
-      flex-box()
-      box-center()
-      font-size 42px
-      border-radius @border-radius
-      background rgba($md-black, .3)
-      opacity 0
-      transition opacity .3s
+    .base-image {
+      width: 100px;
+      height: 100px;
+    }
 
-    &:hover
-      .icon
-        opacity 1
+    .icon {
+      color: $md-white;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
 
-    &:active
-      transform scale(.9)
+      @include flex-box();
 
-  .infos
-    flex 1
-    display inline-block
-    color $md-black
+      @include box-center();
 
-  &:hover
-    background rgba($color-primary, .1)
+      font-size: 42px;
+      border-radius: 3px;
+      background: rgba($md-black, 0.3);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
 
-  &.discount
-    &:hover
-      background linear-gradient(to right, $color-accent1 0%, $color-primary 50%, $color-accent2 100%)
-</style>
+    &:hover {
 
-<style lang="stylus">
-.animation.flying-image.store-item
-  max-width 100px
-  max-height @max-width
-  min-width @max-width
-  min-height @max-width
+      .icon {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  .infos {
+    flex: 1;
+    display: inline-block;
+    color: $md-amber-50;
+  }
+
+  &:hover {
+    background: rgba($color-primary, 0.1);
+  }
+
+  &.discount {
+    &:hover {
+      background: linear-gradient(
+        to right,
+        $color-accent1 0%,
+        $color-primary 50%,
+        $color-accent2 100%
+      );
+    }
+  }
+}
+
+.animation.flying-image.store-item {
+  max-width: 100px;
+  max-height: 100px;
+  min-width: 100px;
+  min-height: 100px;
+}
 </style>

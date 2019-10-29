@@ -1,19 +1,12 @@
 <template>
-  <button
-    class="base-button"
-    :disabled="disabled"
-    @click="onClick"
-  >
+  <button class="base-button" :disabled="disabled" @click="onClick">
     <i v-if="icon" class="material-icons icon" v-text="icon"></i>
 
     <span class="content">
       <slot />
     </span>
 
-    <div
-      v-if="badge !== null"
-      class="button-badge"
-    >
+    <div v-if="badge !== null" class="button-badge">
       <span>{{ badge }}</span>
     </div>
   </button>
@@ -24,115 +17,129 @@ export default {
   props: {
     icon: {
       type: String,
-      default: null,
+      default: null
     },
     badge: {
       type: [String, Number],
-      default: null,
+      default: null
     },
     disabled: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
 
   methods: {
-    onClick (e) {
-      this.$emit('click', e)
-    },
-  },
-}
+    onClick(e) {
+      this.$emit("click", e);
+    }
+  }
+};
 </script>
 
-<style lang="stylus" scoped>
-@import "../styles/imports"
+<style lang="scss" scoped>
+.base-button {
+  height: 39px;
+  border-radius: 3px;
+  background: $color-primary;
+  border: solid 1px $color-primary;
+  color: $md-white;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  transition: background 0.3s;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  position: relative;
 
-.base-button
-  height 39px
-  border-radius 3px
-  background $color-primary
-  border solid 1px $color-primary
-  color white
-  cursor pointer
-  display inline-block
-  text-align center
-  transition background .3s
-  user-select none
-  -webkit-tap-highlight-color rgba(255, 255, 255, 0)
-  position relative
+  .button-badge {
+    pointer-events: none;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: darken($color-primary, 20%);
+    color: $md-white;
+    width: 22px;
+    height: 22px;
+    font-size: 14px;
+    border-radius: 50%;
+    font-weight: bold;
 
-  .button-badge
-    pointer-events none
-    position absolute
-    top -4px
-    right @top
-    background darken($color-primary, 20%)
-    color $md-white
-    width 22px
-    height @width
-    font-size 14px
-    border-radius 50%
-    font-weight bold
-    h-box()
-    box-center()
-    letter-spacing -2px
-    padding-right: -@letter-spacing
-    box-sizing border-box
+    @include h-box();
 
-  &:hover
-    background lighten($color-primary, 10%)
-    border-color @background
+    @include box-center();
 
-  &:active
-    background darken($color-primary, 10%)
-    border-color @background
+    letter-spacing: -2px;
+    padding-right: 2px;
+    box-sizing: border-box;
+  }
 
-  &.fab
-    position fixed
-    z-index 1
-    bottom 24px
-    right 18px
-    font-size 24px
-    width 56px
-    height 56px
-    border-radius 50%
-    padding 0
-    display flex
-    align-items center
-    justify-content center
-    box-shadow 0 4px 10px rgba(black, .3)
+  &:hover {
+    background: lighten($color-primary, 10%);
+    border-color: lighten($color-primary, 10%);
+  }
 
-    > i
-      top 0
+  &:active {
+    background: darken($color-primary, 10%);
+    border-color: lighten($color-primary, 10%);
+  }
 
-  &.icon-button
-    width 39px
-    padding 8px
-    flex auto 0 0
+  &.fab {
+    position: fixed;
+    z-index: 1;
+    bottom: 24px;
+    right: 18px;
+    font-size: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(black, 0.3);
 
-    .icon
-      top 0
-      font-size 24px
+    > i {
+      top: 0;
+    }
+  }
+
+  &.icon-button {
+    width: 39px;
+    padding: 8px;
+    flex: auto 0 0;
+
+    .icon {
+      top: 0;
+      font-size: 24px;
+    }
+  }
 
   &.secondary,
-  &.selected
-    background white
-    color $color-primary
+  &.selected {
+    background: $md-white;
+    color: $color-primary;
+  }
 
-  &.secondary
-    &:hover
-      background lighten($color-primary, 85%)
+  &.secondary {
+    &:hover {
+      background: lighten($color-primary, 85%);
+    }
+  }
 
-  &.selected
-    box-shadow 0 6px 20px rgba($color-primary, .4)
+  &.selected {
+    box-shadow: 0 6px 20px rgba($color-primary, 0.4);
 
-    &:hover
-      background lighten($color-primary, 95%)
+    &:hover {
+      background: lighten($color-primary, 95%);
+    }
+  }
 
-  &[disabled='disabled']
-    background $md-grey-400
-    cursor not-allowed
-    color $md-grey-200
-    border-color $md-grey-500
-
+  &[disabled='disabled'] {
+    background: $md-grey-400;
+    cursor: not-allowed;
+    color: $md-grey-200;
+    border-color: $md-grey-500;
+  }
+}
 </style>

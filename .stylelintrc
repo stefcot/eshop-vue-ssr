@@ -1,0 +1,52 @@
+{
+  "extends": "stylelint-config-recommended-scss",
+  "rules": {
+    "color-hex-length": "short",
+    "color-named": "never",
+    "declaration-no-important": true,
+    "property-no-vendor-prefix": true,
+    "indentation": 2,
+    "string-quotes": "single",
+    "no-duplicate-selectors": true,
+    "selector-combinator-space-after": "always",
+    "selector-attribute-quotes": "always",
+    "selector-attribute-operator-space-after": "never",
+    "declaration-block-trailing-semicolon": "always",
+    "value-no-vendor-prefix": true,
+    "number-leading-zero": "always",
+    "function-url-quotes": "always",
+    "at-rule-no-vendor-prefix": true,
+    "rule-empty-line-before": "always-multi-line",
+    "selector-no-vendor-prefix": true,
+    "media-feature-name-no-vendor-prefix": true,
+    "selector-list-comma-newline-after": "always",
+    "declaration-colon-space-after": "always",
+    "declaration-colon-space-before": "never",
+    "block-opening-brace-space-before": "always",
+    "declaration-block-single-line-max-declarations": 1,
+    "comment-empty-line-before": ["always", {
+      "ignore": ["stylelint-commands"]
+    }],
+    "declaration-property-value-blacklist": {
+      "/^border/": ["none"]
+    },
+    "selector-max-compound-selectors": 4,
+    "block-no-empty": true,
+    "at-rule-empty-line-before": [
+      "always", {
+        "ignoreAtRules": ["import", "first-nested"]
+      }],
+    "at-rule-name-case": "lower",
+    "color-hex-case": "lower",
+    "color-no-hex": null,
+    "value-list-comma-space-after": "always-single-line",
+    "shorthand-property-no-redundant-values": true,
+    "comment-whitespace-inside": "always",
+    "function-comma-space-after": "always-single-line",
+    "function-comma-space-before": "never",
+    "length-zero-no-unit": true,
+    "number-no-trailing-zeros": true,
+    "declaration-block-no-duplicate-properties": true,
+    "scss/selector-no-redundant-nesting-selector": true
+  }
+}

@@ -16,11 +16,42 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ],
-      },      {
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'resolve-url-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              data: "@import '@/styles/_common.scss'",
+              sourceMap: true
+            }
+          }
+        ],
+        exclude: '/node_modules/'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
           loaders: {
+            loader: 'sass-loader',
+            options: {
+              data: "@import '@/styles/_common.scss'",
+              sourceMap: true
+            }
           }
           // other vue-loader options go here
         }
@@ -41,7 +72,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      "@": "src"
     },
     extensions: ['*', '.js', '.vue', '.json']
   },

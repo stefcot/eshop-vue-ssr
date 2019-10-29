@@ -1,19 +1,11 @@
 <template>
   <BasePage class="page-locale">
     <transition name="fade">
-      <BaseLoading
-        v-if="loading"
-        key="loading"
-        class="overlay"
-      />
+      <BaseLoading v-if="loading" key="loading" class="overlay" />
       <div v-else>
-        <h1>{{ $t('change-lang') }}</h1>
+        <h1>{{ $t("change-lang") }}</h1>
         <div class="locales">
-          <div
-            v-for="lang of langs"
-            :key="lang"
-            class="locale"
-          >
+          <div v-for="lang of langs" :key="lang" class="locale">
             <BaseButton
               :class="{ selected: lang === $i18n.locale }"
               @click="setLocale(lang)"
@@ -23,11 +15,8 @@
           </div>
         </div>
         <div class="toolbar">
-          <BaseButton
-            class="secondary"
-            @click="goBack"
-          >
-            {{ $t('back') }}
+          <BaseButton class="secondary" @click="goBack">
+            {{ $t("back") }}
           </BaseButton>
         </div>
       </div>
@@ -36,45 +25,50 @@
 </template>
 
 <script>
-import langs from '../../i18n'
+import langs from "../../i18n";
 
 export default {
-  data () {
+  data() {
     return {
       langs,
-      loading: false,
-    }
+      loading: false
+    };
   },
 
   methods: {
-    goBack () {
-      this.$router.back()
+    goBack() {
+      this.$router.back();
     },
 
-    async setLocale (locale) {
-      this.loading = true
+    async setLocale(locale) {
+      this.loading = true;
       if (!this.$i18n.messages[locale]) {
-        const { default: messages } = await import(`../../i18n/locales/${locale}`)
-        this.$i18n.setLocaleMessage(locale, messages)
+        const { default: messages } = await import(
+          `../../i18n/locales/${locale}`
+        );
+        this.$i18n.setLocaleMessage(locale, messages);
       }
-      this.$i18n.locale = locale
-      this.loading = false
-    },
-  },
-}
+      this.$i18n.locale = locale;
+      this.loading = false;
+    }
+  }
+};
 </script>
 
-<style lang="stylus" scoped>
-@import "../styles/imports"
+<style lang="scss" scoped>
+.locales {
 
-.locales
-  h-box()
-  box-center()
+  @include h-box();
 
-  .locale
-    padding 12px
+  @include box-center();
 
-.toolbar
-  text-align center
-  margin-top 32px
+  .locale {
+    padding: 12px;
+  }
+}
+
+.toolbar {
+  text-align: center;
+  margin-top: 32px;
+}
 </style>

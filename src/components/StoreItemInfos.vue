@@ -13,70 +13,96 @@
 </template>
 
 <script>
-import DiscountMixin from '../mixins/discount'
+import DiscountMixin from "../mixins/discount";
 
 export default {
-  mixins: [
-    DiscountMixin(),
-  ],
+  mixins: [DiscountMixin()],
 
   props: {
     item: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
 
   computed: {
-    cssClass () {
+    cssClass() {
       return {
-        discount: this.discount,
-      }
-    },
-  },
-}
+        discount: this.discount
+      };
+    }
+  }
+};
 </script>
 
-<style lang="stylus" scoped>
-@import "../styles/imports"
-.store-item-infos
-  v-box()
+<style lang="scss" scoped>
+.store-item-infos {
 
-  .title
-    font-size 20px
+  @include v-box();
 
-  .discount
-    .original-price
-      text-decoration line-through
-      color rgba($md-black, .7)
+  .title {
+    font-size: 20px;
+  }
 
-    .percentage
-      background linear-gradient(to right, $color-accent1 0%, $color-primary 50%, $color-accent2 100%)
-      color white
-      border-radius 3px
-      padding 0 2px
-      font-weight bold
+  .discount {
 
-  .price
-    flex 1
-    font-size 32px
-    font-weight lighter
+    .original-price {
+      text-decoration: line-through;
+      color: rgba($md-black, 0.7);
+    }
 
-  .rating
-    color rgba($md-black, .3)
+    .percentage {
+      background: linear-gradient(
+        to right,
+        $color-accent1 0%,
+        $color-primary 50%,
+        $color-accent2 100%
+      );
+      color: $md-white;
+      border-radius: 3px;
+      padding: 0 2px;
+      font-weight: bold;
+    }
+  }
 
-  &.discount
-    .price
-      color $color-primary
+  .price {
+    flex: 1;
+    font-size: 32px;
+    font-weight: lighter;
+  }
 
-.store-item-infos-parent
-  &.discount
-    &:hover
-      .store-item-infos
-        .discount
-          .percentage
-            background none
+  .rating {
+    color: rgba($md-black, 0.3);
+  }
 
-        .price
-          color $md-white
+  &.discount {
+
+    .price {
+      color: $color-primary;
+    }
+  }
+}
+
+.store-item-infos-parent {
+
+  &.discount {
+
+    &:hover {
+
+      .store-item-infos {
+
+        .discount {
+
+          .percentage {
+            background: none;
+          }
+        }
+
+        .price {
+          color: $md-white;
+        }
+      }
+    }
+  }
+}
 </style>

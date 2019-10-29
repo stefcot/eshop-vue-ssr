@@ -17,35 +17,38 @@ export default {
   props: {
     src: {
       type: String,
-      required: true,
-    },
-  },
-
-  data () {
-    return {
-      loaded: false,
+      required: true
     }
   },
 
-  watch: {
-    src () {
-      this.loaded = false
-    },
+  data() {
+    return {
+      loaded: false
+    };
   },
-}
+
+  watch: {
+    src() {
+      this.loaded = false;
+    }
+  }
+};
 </script>
 
-<style lang="stylus" scoped>
-@import "../styles/imports"
+<style lang="scss" scoped>
+.base-image {
 
-.base-image
-  flex-box()
-  box-center()
-  background $md-grey-100
-  border-radius 3px
+  @include flex-box();
 
-  .img
-    max-width 100%
-    max-height 100%
-    border-radius @border-radius
+  @include box-center();
+
+  background: $md-grey-100;
+  border-radius: 3px;
+
+  .img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 3px;
+  }
+}
 </style>
