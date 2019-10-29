@@ -42,6 +42,7 @@ export default {
 
   .title {
     font-size: 20px;
+    color: $md-black;
   }
 
   .discount {
@@ -69,6 +70,7 @@ export default {
     flex: 1;
     font-size: 32px;
     font-weight: lighter;
+    color: $md-black;
   }
 
   .rating {
