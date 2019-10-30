@@ -12,7 +12,7 @@
     "validate:js": "npm run lint:js && prettier --list-different ./src/**/*.{js,vue}",
     "validate:css": "npm run lint:css && prettier --list-different ./src/**/*.scss",
     "lint:js": "npm run eslint-check && npm run format:js && node_modules/.bin/eslint --config ./.eslintrc ./src/**/*.{js,vue} --fix",
-    "lint:css": "npm run stylelint-check && npm run format:css && node_modules/.bin/stylelint --config ./.stylelintrc ./src/styles/**/*.scss",
+    "lint:css": "npm run format:css && node_modules/.bin/stylelint --config ./.stylelintrc ./src/styles/**/*.scss --fix",
     "eslint-check": "eslint --config ./.eslintrc --print-config ./src/main.js | eslint-config-prettier-check",
     "stylelint-check": "stylelint-config-prettier-check",
     "format:js": "prettier-eslint --write './src/js/**/*.{js,jsx}'",

@@ -23,6 +23,7 @@
 .right-pane-leave-active,
 .left-pane-enter-active,
 .left-pane-leave-active {
+
   > .background {
     transition: opacity 0.3s linear;
   }
@@ -34,8 +35,11 @@
 
 .right-pane-enter-active,
 .left-pane-enter-active {
+
   > .pane {
+
     > {
+
       .header {
         transition: transform 0.6s cubic-bezier(0, 1, 0, 1) 0.1s;
       }
@@ -60,6 +64,7 @@
 .right-pane-leave-to,
 .left-pane-enter,
 .left-pane-leave-to {
+
   > .background {
     opacity: 0;
   }
@@ -67,6 +72,7 @@
 
 .right-pane-enter,
 .right-pane-leave-to {
+
   > .pane {
     transform: translateX(100%);
   }
@@ -74,14 +80,18 @@
 
 .left-pane-enter,
 .left-pane-leave-to {
+
   > .pane {
     transform: translateX(-100%);
   }
 }
 
 .right-pane-enter {
+
   > .pane {
+
     > {
+
       .header,
       .content,
       .footer {
@@ -92,8 +102,11 @@
 }
 
 .left-pane-enter {
+
   > .pane {
+
     > {
+
       .header,
       .content,
       .footer {

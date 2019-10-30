@@ -1,4 +1,4 @@
-import Vue from 'vue'
-import Http from './utils/http'
+import Vue from 'vue';
+import Http from './utils/http';
 
-Vue.use(Http)
+Vue.use(Http);

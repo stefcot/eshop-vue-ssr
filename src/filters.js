@@ -7,8 +7,8 @@
  * @param {number} value
  * @returns
  */
-export function percentage (value) {
-  return `${Math.round(value * 100).toLocaleString()}%`
+export function percentage(value) {
+  return `${Math.round(value * 100).toLocaleString()}%`;
 }
 
 /**
@@ -18,6 +18,6 @@ export function percentage (value) {
  * @param {number} value
  * @returns
  */
-export function money (value) {
-  return `$${value.toLocaleString()}`
+export function money(value) {
+  return `$${value.toLocaleString()}`;
 }
