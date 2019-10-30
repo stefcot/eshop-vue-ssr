@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseButton snapshot 1`] = `
+<button class="base-button">
+  <!----> <span class="content"><span>Add item</span></span>
+  <!----></button>
+`;

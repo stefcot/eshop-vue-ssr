@@ -1,6 +1,13 @@
 {
   "presets": [
-    ["env", { "modules": false }],
-    "stage-3"
-  ]
+    ["@babel/preset-env", { "modules": false }],
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "transform-es2015-modules-commonjs",
+        "dynamic-import-node"
+      ]
+    }
+  }
 }
