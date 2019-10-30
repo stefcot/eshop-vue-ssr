@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import PageHome from './components/PageHome.vue';
-import PageStoreItem from './components/PageStoreItem.vue';
-import PageCheckout from './components/PageCheckout.vue';
-import PageNotFound from './components/PageNotFound.vue';
+import PageHome from './components/PageHome';
+import PageStoreItem from './components/PageStoreItem';
+import PageCheckout from './components/PageCheckout';
+import PageNotFound from './components/PageNotFound';
 
 Vue.use(VueRouter);
 
