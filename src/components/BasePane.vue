@@ -34,7 +34,7 @@ export default {
 
   methods: {
     close() {
-      this.$emit("close");
+      this.$emit('close');
     }
   }
 };
@@ -42,7 +42,6 @@ export default {
 
 <style lang="scss" scoped>
 .base-pane {
-
   .background,
   .pane {
     position: fixed;
@@ -92,14 +91,12 @@ export default {
   }
 
   &.right-pane {
-
     .pane {
       right: 0;
     }
   }
 
   &.left-pane {
-
     .pane {
       left: 0;
     }

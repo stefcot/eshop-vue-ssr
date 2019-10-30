@@ -11,24 +11,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import AppHeader from './AppHeader.vue'
-import AppFooter from './AppFooter.vue'
-import StoreCart from './StoreCart.vue'
+import { mapGetters } from 'vuex';
+import AppHeader from './AppHeader';
+import AppFooter from './AppFooter';
+import StoreCart from './StoreCart';
 
 export default {
   components: {
     AppHeader,
     AppFooter,
-    StoreCart,
+    StoreCart
   },
 
   computed: {
-    ...mapGetters('ui', [
-      'showCart',
-    ]),
-  },
-}
+    ...mapGetters('ui', ['showCart'])
+  }
+};
 </script>
 
 <style lang="scss">

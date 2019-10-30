@@ -1,25 +1,25 @@
 export default {
   namespaced: true,
 
-  state () {
+  state() {
     return {
-      showCart: false,
-    }
+      showCart: false
+    };
   },
 
   getters: {
-    showCart: state => state.showCart,
+    showCart: state => state.showCart
   },
 
   mutations: {
-    showCart (state, value) {
-      state.showCart = value
-    },
+    showCart(state, value) {
+      state.showCart = value;
+    }
   },
 
   actions: {
-    setShowCart ({ commit }, value) {
-      commit('showCart', value)
-    },
-  },
-}
+    setShowCart({ commit }, value) {
+      commit('showCart', value);
+    }
+  }
+};

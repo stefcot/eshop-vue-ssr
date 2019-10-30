@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import StoreItem from "./StoreItem.vue";
+import { mapGetters, mapActions } from 'vuex';
+import StoreItem from './StoreItem';
 
 export default {
   components: {
@@ -24,15 +24,15 @@ export default {
   },
 
   computed: {
-    ...mapGetters("items", ["items", "loading"])
-  },
-
-  methods: {
-    ...mapActions("items", ["fetchItems"])
+    ...mapGetters('items', ['items', 'loading'])
   },
 
   mounted() {
     this.fetchItems();
+  },
+
+  methods: {
+    ...mapActions('items', ['fetchItems'])
   }
 };
 </script>
@@ -51,7 +51,6 @@ export default {
 }
 
 @keyframes slide {
-
   0% {
     opacity: 0;
     transform: translateY(100px);

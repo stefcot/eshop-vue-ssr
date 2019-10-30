@@ -1,21 +1,21 @@
-export default function discountMixin ({
+export default function discountMixin({
   itemProp = 'item',
   discountProp = 'discount',
   priceProp = 'price',
-  originalPriceProp = 'originalPrice',
+  originalPriceProp = 'originalPrice'
 } = {}) {
   return {
     computed: {
-      [discountProp] () {
-        const item = this[itemProp]
-        const price = item[priceProp]
-        const originalPrice = item[originalPriceProp]
+      [discountProp]() {
+        const item = this[itemProp];
+        const price = item[priceProp];
+        const originalPrice = item[originalPriceProp];
 
         if (originalPrice) {
-          return 1 - price / originalPrice
+          return 1 - price / originalPrice;
         }
-        return 0
-      },
-    },
-  }
+        return 0;
+      }
+    }
+  };
 }

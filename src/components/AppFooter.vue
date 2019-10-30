@@ -5,7 +5,6 @@
 </template>
 
 <style lang="scss" scoped>
-
 .app-footer {
   text-align: center;
   padding: 42px;

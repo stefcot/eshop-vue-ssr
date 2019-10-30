@@ -3,7 +3,7 @@
     <transition name="fade">
       <BaseLoading v-if="loading" key="loading" class="overlay" />
       <div v-else>
-        <h1>{{ $t("change-lang") }}</h1>
+        <h1>{{ $t('change-lang') }}</h1>
         <div class="locales">
           <div v-for="lang of langs" :key="lang" class="locale">
             <BaseButton
@@ -16,7 +16,7 @@
         </div>
         <div class="toolbar">
           <BaseButton class="secondary" @click="goBack">
-            {{ $t("back") }}
+            {{ $t('back') }}
           </BaseButton>
         </div>
       </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import langs from "../../i18n";
+import langs from '../../i18n';
 
 export default {
   data() {
@@ -57,7 +57,6 @@ export default {
 
 <style lang="scss" scoped>
 .locales {
-
   @include h-box();
 
   @include box-center();

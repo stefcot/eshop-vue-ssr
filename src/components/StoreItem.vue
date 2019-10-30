@@ -16,17 +16,17 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import DiscountMixin from "../mixins/discount";
-import StoreItemInfos from "./StoreItemInfos.vue";
-import { flyingImage } from "../utils/animations";
+import { mapActions } from 'vuex';
+import DiscountMixin from '../mixins/discount';
+import StoreItemInfos from './StoreItemInfos';
+import { flyingImage } from '../utils/animations';
 
 export default {
-  mixins: [DiscountMixin()],
-
   components: {
     StoreItemInfos
   },
+
+  mixins: [DiscountMixin()],
 
   props: {
     item: {
@@ -44,7 +44,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("cart", ["addStoreItemToCart"]),
+    ...mapActions('cart', ['addStoreItemToCart']),
 
     addToCart() {
       this.addStoreItemToCart({
@@ -54,9 +54,9 @@ export default {
       // Animation
       flyingImage({
         el: this.$refs.image.$el,
-        targetEl: document.querySelector(".cart-animation-target"),
+        targetEl: document.querySelector('.cart-animation-target'),
         imageUrl: this.item.img,
-        imageClass: "store-item"
+        imageClass: 'store-item'
       });
     }
   }
@@ -65,7 +65,6 @@ export default {
 
 <style lang="scss" scoped>
 .store-item {
-
   @include h-box();
 
   padding: 12px;
@@ -104,7 +103,6 @@ export default {
     }
 
     &:hover {
-
       .icon {
         opacity: 1;
       }
@@ -126,7 +124,6 @@ export default {
   }
 
   &.discount {
-
     &:hover {
       background: linear-gradient(
         to right,

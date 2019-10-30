@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import DiscountMixin from "../mixins/discount";
+import DiscountMixin from '../mixins/discount';
 
 export default {
   mixins: [DiscountMixin()],
@@ -37,7 +37,6 @@ export default {
 
 <style lang="scss" scoped>
 .store-item-infos {
-
   @include v-box();
 
   .title {
@@ -46,7 +45,6 @@ export default {
   }
 
   .discount {
-
     .original-price {
       text-decoration: line-through;
       color: rgba($md-black, 0.7);
@@ -78,7 +76,6 @@ export default {
   }
 
   &.discount {
-
     .price {
       color: $color-primary;
     }
@@ -86,15 +83,10 @@ export default {
 }
 
 .store-item-infos-parent {
-
   &.discount {
-
     &:hover {
-
       .store-item-infos {
-
         .discount {
-
           .percentage {
             background: none;
           }

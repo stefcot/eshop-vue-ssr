@@ -47,9 +47,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import StoreItemInfos from "./StoreItemInfos.vue";
-import { flyingImage } from "../utils/animations";
+import { mapGetters, mapActions } from 'vuex';
+import StoreItemInfos from './StoreItemInfos';
+import { flyingImage } from '../utils/animations';
 
 export default {
   components: {
@@ -65,17 +65,17 @@ export default {
 
   data() {
     return {
-      commentText: ""
+      commentText: ''
     };
   },
 
   computed: {
-    ...mapGetters("item", [
-      "comments",
-      "commentsLoading",
-      "details",
-      "detailsLoading",
-      "error"
+    ...mapGetters('item', [
+      'comments',
+      'commentsLoading',
+      'details',
+      'detailsLoading',
+      'error'
     ])
   },
 
@@ -90,9 +90,9 @@ export default {
   },
 
   methods: {
-    ...mapActions("item", ["fetchStoreItemDetails", "sendComment"]),
+    ...mapActions('item', ['fetchStoreItemDetails', 'sendComment']),
 
-    ...mapActions("cart", ["addStoreItemToCart"]),
+    ...mapActions('cart', ['addStoreItemToCart']),
 
     addToCart() {
       this.addStoreItemToCart({
@@ -101,10 +101,10 @@ export default {
 
       // Animation
       flyingImage({
-        el: this.$refs.image.$el.querySelector("img"),
-        targetEl: document.querySelector(".cart-animation-target"),
+        el: this.$refs.image.$el.querySelector('img'),
+        targetEl: document.querySelector('.cart-animation-target'),
         imageUrl: this.details.img,
-        imageClass: "page-store-item"
+        imageClass: 'page-store-item'
       });
     },
 
@@ -117,7 +117,7 @@ export default {
     async submitComment() {
       const text = this.commentText;
       if (text) {
-        this.commentText = "";
+        this.commentText = '';
         try {
           await this.sendComment({
             text

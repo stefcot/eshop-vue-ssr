@@ -6,8 +6,8 @@
         <div v-if="showSearch" key="search" class="state">
           <input
             ref="searchInput"
-            class="search-input"
             v-model="searchTextModel"
+            class="search-input"
             placeholder="Search"
             @keyup.esc="closeSearch"
           />
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -51,9 +51,9 @@ export default {
   },
 
   computed: {
-    ...mapGetters("items", ["searchText"]),
+    ...mapGetters('items', ['searchText']),
 
-    ...mapGetters("cart", ["cartCount"]),
+    ...mapGetters('cart', ['cartCount']),
 
     searchTextModel: {
       get() {
@@ -92,9 +92,9 @@ export default {
   },
 
   methods: {
-    ...mapActions("items", ["setSearchText"]),
+    ...mapActions('items', ['setSearchText']),
 
-    ...mapActions("ui", ["setShowCart"]),
+    ...mapActions('ui', ['setShowCart']),
 
     openSearch() {
       this.showSearch = true;
@@ -106,7 +106,7 @@ export default {
 
     closeSearch() {
       this.showSearch = false;
-      this.searchTextModel = "";
+      this.searchTextModel = '';
     },
 
     openCart() {
@@ -136,7 +136,6 @@ export default {
   }
 
   .state {
-
     @include h-box();
 
     @include box-center();
@@ -171,9 +170,7 @@ export default {
   }
 
   .cart-button {
-
     &.animate {
-
       .button-badge {
         animation: cart 0.5s 0.5s cubic-bezier(0, 0, 0.2, 1);
       }
@@ -182,7 +179,6 @@ export default {
 }
 
 @keyframes cart {
-
   0%,
   100% {
     transform: none;

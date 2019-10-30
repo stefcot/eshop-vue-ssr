@@ -1,0 +1,58 @@
+{
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "standard",
+    "plugin:vue/recommended",
+    "eslint:recommended",
+    "prettier/vue",
+    "plugin:prettier/recommended"
+  ],
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true
+  },
+  "plugins": [
+    "vue",
+    "prettier"
+  ],
+  "settings": {
+    "vue": {
+      "version": "2.5.11"
+    },
+    "import/resolver": "webpack"
+  },
+  "rules": {
+    "import/imports-first": ["error", "absolute-first"],
+    "import/extensions": [1, {
+      "js": "never",
+      "vue": "never",
+      "scss": "never"
+    }],
+    "import/newline-after-import": "error",
+    "import/no-webpack-loader-syntax": "warn",
+    "import/no-unresolved": "warn",
+    "curly": ["error", "all"],
+    "dot-notation": "off",
+    "no-console": 0,
+    "no-shadow": 0,
+    "no-trailing-spaces": 0,
+    "no-underscore-dangle": 0,
+    "no-unused-expressions": 0,
+    "no-use-before-define": "off",
+    "strict": 0
+  }
+}

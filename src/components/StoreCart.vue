@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import StoreCartItem from "./StoreCartItem.vue";
+import { mapGetters, mapActions } from 'vuex';
+import StoreCartItem from './StoreCartItem';
 
 export default {
   components: {
@@ -34,13 +34,13 @@ export default {
   },
 
   computed: {
-    ...mapGetters("cart", ["cartItems", "cartTotal"])
+    ...mapGetters('cart', ['cartItems', 'cartTotal'])
   },
 
   methods: {
-    ...mapActions("ui", ["setShowCart"]),
+    ...mapActions('ui', ['setShowCart']),
 
-    ...mapActions("cart", ["clearCart"]),
+    ...mapActions('cart', ['clearCart']),
 
     close() {
       this.setShowCart(false);
@@ -49,7 +49,7 @@ export default {
     checkout() {
       this.close();
       this.clearCart();
-      this.$router.push({ name: "checkout" });
+      this.$router.push({ name: 'checkout' });
     }
   }
 };
@@ -57,7 +57,6 @@ export default {
 
 <style lang="scss" scoped>
 .cart-footer {
-
   @include h-box();
 
   @include box-center();

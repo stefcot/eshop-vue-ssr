@@ -6,7 +6,6 @@
 
 <style lang="scss" scoped>
 .base-loading {
-
   @include flex-box();
 
   @include box-center();
@@ -30,7 +29,6 @@
 }
 
 @keyframes spinner {
-
   0% {
     transform: rotate(0deg);
   }

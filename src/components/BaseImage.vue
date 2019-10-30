@@ -37,7 +37,6 @@ export default {
 
 <style lang="scss" scoped>
 .base-image {
-
   @include flex-box();
 
   @include box-center();

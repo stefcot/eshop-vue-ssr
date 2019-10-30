@@ -8,7 +8,7 @@
       </div>
       <div class="count">
         <span class="prefix">x</span>
-        <input type="number" class="value" v-model.number="countModel" />
+        <input v-model.number="countModel" type="number" class="value" />
       </div>
       <div class="auto-hide">
         <BaseButton class="icon-button" icon="remove" @click="removeOne" />
@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import StoreItemInfos from "./StoreItemInfos.vue";
+import { mapActions } from 'vuex';
+import StoreItemInfos from './StoreItemInfos';
 
 export default {
   components: {
@@ -49,11 +49,11 @@ export default {
   },
 
   methods: {
-    ...mapActions("cart", [
-      "addStoreItemToCart",
-      "removeStoreItemFromCart",
-      "removeCartItem",
-      "setCartItemCount"
+    ...mapActions('cart', [
+      'addStoreItemToCart',
+      'removeStoreItemFromCart',
+      'removeCartItem',
+      'setCartItemCount'
     ]),
 
     addOne() {
@@ -79,7 +79,6 @@ export default {
 
 <style lang="scss" scoped>
 .store-cart-item {
-
   @include h-box();
 
   @include box-center();
@@ -109,7 +108,6 @@ export default {
   }
 
   .actions {
-
     @include h-box();
 
     @include box-center();
@@ -146,7 +144,6 @@ export default {
     }
 
     .auto-hide {
-
       @include h-box();
 
       @include box-center();
@@ -160,9 +157,7 @@ export default {
 
     > *,
     .auto-hide {
-
       > * {
-
         @include space-between-x(8px);
       }
     }
@@ -172,7 +167,6 @@ export default {
     background: rgba($color-primary, 0.1);
 
     .actions {
-
       .count {
         margin-right: 8px;
 

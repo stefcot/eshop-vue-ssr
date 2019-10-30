@@ -1,47 +1,42 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import cart from './cart'
-import item from './item'
-import items from './items'
-import ui from './ui'
+import cart from './cart';
+import item from './item';
+import items from './items';
+import ui from './ui';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
 
   actions: {
-    init () {
-      console.log('store init')
-    },
+    init() {
+      console.log('store init');
+    }
   },
 
   modules: {
     cart,
     item,
     items,
-    ui,
-  },
-})
+    ui
+  }
+});
 
 // Hot module replacement for the store
 if (module.hot) {
-  module.hot.accept([
-    './cart',
-    './item',
-    './items',
-    './ui',
-  ], () => {
+  module.hot.accept(['./cart', './item', './items', './ui'], () => {
     store.hotUpdate({
       modules: {
         cart: require('./cart').default,
         item: require('./item').default,
         items: require('./items').default,
-        ui: require('./ui').default,
-      },
-    })
-  })
+        ui: require('./ui').default
+      }
+    });
+  });
 }
 
-export default store
+export default store;
