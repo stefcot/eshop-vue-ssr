@@ -32,7 +32,12 @@ export default {
   },
 
   methods: {
-    ...mapActions('items', ['fetchItems'])
+    ...mapActions('items', ['fetchItems']),
+    // SSR: this function dispatches the fetchItems
+    // action of the items store module
+    asyncData({ store }) {
+      return store.dispatch('items/fetchItems');
+    }
   }
 };
 </script>

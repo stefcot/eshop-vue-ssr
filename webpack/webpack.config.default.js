@@ -1,16 +1,16 @@
-const path = require('path')
-const webpack = require('webpack')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const FriendlyErrors = require('friendly-errors-webpack-plugin')
-const notifier = require('node-notifier')
-const ICON = path.join(__dirname, './src/assets/error-icon25266.png')
+const path = require('path');
+const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const FriendlyErrors = require('friendly-errors-webpack-plugin');
+const notifier = require('node-notifier');
+
+const ICON = path.join(__dirname, './src/assets/error-icon25266.png');
 
 module.exports = {
-  entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: '[name].[chunkhash].js'
   },
   module: {
     rules: [
@@ -21,19 +21,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader'
-        ],
+        use: ['vue-style-loader', 'css-loader']
       },
       {
         test: /\.scss$/,
         use: [
           {
-            loader: 'vue-style-loader',
+            loader: 'vue-style-loader'
           },
           {
-            loader: 'css-loader',
+            loader: 'css-loader'
           },
           {
             loader: 'postcss-loader'
@@ -41,7 +38,10 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              prependData: `@import "${path.resolve(__dirname, 'src/styles/_common.scss')}";`
+              prependData: `@import "${path.resolve(
+                __dirname,
+                'src/styles/_common.scss'
+              )}";`
             }
           }
         ],
@@ -49,7 +49,7 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
@@ -67,8 +67,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      "@": "src"
+      vue$: 'vue/dist/vue.esm.js',
+      '@': 'src'
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
@@ -81,13 +81,11 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map',
-  plugins: [
-    new VueLoaderPlugin(),
-  ]
-}
+  plugins: [new VueLoaderPlugin()]
+};
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -104,24 +102,23 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
-  ])
+  ]);
 } else {
-  module.exports.plugins = (module.exports.plugins ||
-    []).concat([
-      new FriendlyErrors({
-        clearConsole: true,
-        onErrors: (severity, errors) => {
-          if (severity !== 'error') {
-            return;
-          }
-          const error = errors[0];
-          notifier.notify({
-            title: "Webpack error",
-            message: severity + ': ' + error.name,
-            subtitle: error.file || '',
-            icon: ICON
-          });
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new FriendlyErrors({
+      clearConsole: true,
+      onErrors: (severity, errors) => {
+        if (severity !== 'error') {
+          return;
         }
-      }),
-  ])
+        const error = errors[0];
+        notifier.notify({
+          title: 'Webpack error',
+          message: severity + ': ' + error.name,
+          subtitle: error.file || '',
+          icon: ICON
+        });
+      }
+    })
+  ]);
 }

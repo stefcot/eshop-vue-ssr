@@ -126,6 +126,15 @@ export default {
           this.commentText = text;
         }
       }
+    },
+
+    // SSR: we need to call the
+    // fetchStoreItemDetails action of the item store module, with the id
+    // parameter of the route passed by the server:
+    asyncData({ store, route }) {
+      return store.dispatch('items/fetchStoreItemDetails', {
+        id: route.params.id
+      });
     }
   }
 };
