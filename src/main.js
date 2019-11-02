@@ -4,6 +4,7 @@ import Vue from 'vue';
 import App from './components/App';
 import router from './router';
 import store from './store';
+import { createI18n, getAutoLang } from './utils/i18n';
 import * as filters from './filters';
 import './plugins';
 import './components';
@@ -16,6 +17,8 @@ for (const key in filters) {
 sync(store, router);
 
 async function main() {
+  const locale = getAutoLang();
+  const i18n = await createI18n(locale);
   await store.dispatch('init');
 
   // eslint-disable-next-line no-new
@@ -23,6 +26,7 @@ async function main() {
     el: '#app',
     router,
     store,
+    i18n, // inject internationalization into the app,
     ...App
   });
 }

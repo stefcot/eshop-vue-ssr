@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import PageLocale from './components/PageLocale';
 import PageHome from './components/PageHome';
 import PageStoreItem from './components/PageStoreItem';
 import PageCheckout from './components/PageCheckout';
@@ -17,6 +18,7 @@ const routes = [
     props: route => ({ id: parseInt(route.params.id) })
   },
   { path: '/checkout', name: 'checkout', component: PageCheckout },
+  { path: '/locale', name: 'locale', component: PageLocale },
   { path: '*', component: PageNotFound }
 ];
 

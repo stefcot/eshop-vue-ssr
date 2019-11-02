@@ -1,7 +1,9 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const FriendlyErrors = require('friendly-errors-webpack-plugin')
+const notifier = require('node-notifier')
+const ICON = path.join(__dirname, './src/assets/error-icon25266.png')
 
 module.exports = {
   entry: './src/main.js',
@@ -106,6 +108,20 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   module.exports.plugins = (module.exports.plugins ||
     []).concat([
-      new FriendlyErrors(),
+      new FriendlyErrors({
+        clearConsole: true,
+        onErrors: (severity, errors) => {
+          if (severity !== 'error') {
+            return;
+          }
+          const error = errors[0];
+          notifier.notify({
+            title: "Webpack error",
+            message: severity + ': ' + error.name,
+            subtitle: error.file || '',
+            icon: ICON
+          });
+        }
+      }),
   ])
 }
