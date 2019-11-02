@@ -30,5 +30,8 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  margin: 0;
+}
 @import '../styles/main';
 </style>

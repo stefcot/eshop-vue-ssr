@@ -28,7 +28,10 @@ export default {
   },
 
   mounted() {
-    this.fetchItems();
+    // won't fetch things again on load if they're already in the store
+    if (!this.items.length) {
+      this.fetchItems();
+    }
   },
 
   methods: {

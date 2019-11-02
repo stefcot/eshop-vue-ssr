@@ -17,24 +17,21 @@
     "prettier/vue",
     "plugin:prettier/recommended"
   ],
-  "globals": {
-    "window": true,
-    "document": true,
-    "localStorage": true,
-    "FormData": true,
-    "FileReader": true,
-    "Blob": true,
-    "navigator": true
-  },
   "plugins": [
     "vue",
     "prettier"
   ],
   "settings": {
     "vue": {
-      "version": "2.5.11"
+      "version": "2.6.1"
     },
-    "import/resolver": "webpack"
+    "import/resolver": "webpack",
+    "import/extensions": [
+      ".js",
+      ".jsx",
+      ".vue",
+      ".json"
+    ]
   },
   "rules": {
     "import/imports-first": ["error", "absolute-first"],
@@ -45,7 +42,6 @@
     }],
     "import/newline-after-import": "error",
     "import/no-webpack-loader-syntax": "warn",
-    "import/no-unresolved": "warn",
     "curly": ["error", "all"],
     "dot-notation": "off",
     "no-console": 0,

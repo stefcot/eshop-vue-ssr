@@ -109,9 +109,12 @@ export default {
     },
 
     fetchData() {
-      this.fetchStoreItemDetails({
-        id: this.id
-      });
+      // won't fetch things again on load if they're already in the store
+      if (!this.details || this.details.id !== this.id) {
+        this.fetchStoreItemDetails({
+          id: this.id
+        });
+      }
     },
 
     async submitComment() {

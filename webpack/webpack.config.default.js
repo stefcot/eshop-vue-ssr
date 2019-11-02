@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[Chunkhash].js'
   },
   module: {
     rules: [
@@ -40,7 +40,7 @@ module.exports = {
             options: {
               prependData: `@import "${path.resolve(
                 __dirname,
-                'src/styles/_common.scss'
+                '../src/styles/_common.scss'
               )}";`
             }
           }
@@ -68,7 +68,7 @@ module.exports = {
   resolve: {
     alias: {
       vue$: 'vue/dist/vue.esm.js',
-      '@': 'src'
+      '@': path.resolve(__dirname, '../src')
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
@@ -86,6 +86,7 @@ module.exports = {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map';
+  module.exports.mode = 'production';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -104,6 +105,7 @@ if (process.env.NODE_ENV === 'production') {
     })
   ]);
 } else {
+  module.exports.mode = 'development';
   module.exports.plugins = (module.exports.plugins || []).concat([
     new FriendlyErrors({
       clearConsole: true,

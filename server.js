@@ -14,8 +14,6 @@ const { default: langs } = require('./i18n');
 // have more information about the code. This enables more features such as
 // source maps and hot-reloading.
 const { createBundleRenderer } = require('vue-server-renderer');
-
-const fs = require('fs');
 const path = require('path');
 
 const isProd = process.env.NODE_ENV === 'production';

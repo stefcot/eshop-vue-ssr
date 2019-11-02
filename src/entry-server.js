@@ -27,8 +27,8 @@ export default context => {
       // Use Promise.all(array) to wait for all the asyncData calls
       Promise.all(
         matchedComponents.map(Component => {
-          if (Component.asyncData) {
-            return Component.asyncData({
+          if (Component.methods.asyncData) {
+            return Component.methods.asyncData({
               store,
               route: router.currentRoute
             });
