@@ -14,6 +14,7 @@ const { default: langs } = require('./i18n');
 // have more information about the code. This enables more features such as
 // source maps and hot-reloading.
 const { createBundleRenderer } = require('vue-server-renderer');
+const fs = require('fs');
 const path = require('path');
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -32,7 +33,14 @@ let renderer;
 let readyPromise;
 
 if (isProd) {
-  // TODO production
+  const template = fs.readFileSync(templatePath, 'utf-8')
+  const bundle = require('./dist/vue-ssr-server-bundle.json')
+  const clientManifest = require('./dist/vue-ssr-client-manifest.json')
+  renderer = createBundleRenderer(bundle, {
+    runInNewContext: false,
+    template,
+    clientManifest,
+  })
 } else {
   const setupDevServer = require('./server.dev');
   // Thanks to the server.dev.js file, we can add support of webpack hot-reloading to our
@@ -44,6 +52,7 @@ if (isProd) {
     onUpdate(bundle, options) {
       // When the setup triggers an update, we create or recreate the bundle renderer.
       renderer = createBundleRenderer(bundle, {
+        // If set to true, can cause performances problems
         runInNewContext: false,
         ...options
       });

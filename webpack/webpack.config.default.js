@@ -3,12 +3,15 @@ const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const FriendlyErrors = require('friendly-errors-webpack-plugin');
 const notifier = require('node-notifier');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const ICON = path.join(__dirname, './src/assets/error-icon25266.png');
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
     filename: '[name].[Chunkhash].js'
   },
@@ -21,13 +24,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['vue-style-loader', 'css-loader']
+        use: isProd
+          ? [{ loader: MiniCssExtractPlugin.loader }, 'css-loader']
+          : ['vue-style-loader', 'css-loader']
       },
       {
         test: /\.scss$/,
         use: [
           {
-            loader: 'vue-style-loader'
+            loader: isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader',
           },
           {
             loader: 'css-loader'
@@ -49,7 +54,11 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        use: [
+          {
+            loader: 'vue-loader'
+          }
+        ]
       },
       {
         test: /\.js$/,
@@ -94,16 +103,29 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'common.[chunkhash].css',
+      allChunks: true
     })
   ]);
+  module.exports.optimization = {
+    minimizer: [
+      // we specify a custom UglifyJsPlugin here to get source maps in production
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          compress: false,
+          ecma: 6,
+          mangle: true
+        },
+        sourceMap: true
+      })
+    ]
+  };
 } else {
   module.exports.mode = 'development';
   module.exports.plugins = (module.exports.plugins || []).concat([

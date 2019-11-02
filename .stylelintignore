@@ -2,3 +2,4 @@ _theme.scss
 _reset.scss
 _md-colors.scss
 _vars.scss
+dist/*.css
