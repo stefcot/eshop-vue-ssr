@@ -7,6 +7,8 @@
 
 import { createApp } from './app';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 export default context => {
   // We return a Promise because we will send the application app when we
   // will have finished all the operations.
@@ -27,8 +29,12 @@ export default context => {
       // Use Promise.all(array) to wait for all the asyncData calls
       Promise.all(
         matchedComponents.map(Component => {
-          if (Component.methods.asyncData) {
-            return Component.methods.asyncData({
+          const asyncData = isProd
+            ? Component.asyncData
+            : Component.methods.asyncData;
+
+          if (asyncData) {
+            return asyncData({
               store,
               route: router.currentRoute
             });

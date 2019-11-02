@@ -2,9 +2,10 @@ const merge = require('webpack-merge');
 const defaultConfig = require('./webpack.config.default');
 const nodeExternals = require('webpack-node-externals');
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
+const path = require('path');
 
 module.exports = merge(defaultConfig, {
-  entry: './src/entry-server',
+  entry: path.resolve(__dirname, '../src/entry-server'),
   // Here, we change multiple options, such as the target and output.libraryTarget ones,
   // to adapt to the node.js environment.
   target: 'node',

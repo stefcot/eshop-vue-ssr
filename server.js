@@ -33,14 +33,14 @@ let renderer;
 let readyPromise;
 
 if (isProd) {
-  const template = fs.readFileSync(templatePath, 'utf-8')
-  const bundle = require('./dist/vue-ssr-server-bundle.json')
-  const clientManifest = require('./dist/vue-ssr-client-manifest.json')
+  const template = fs.readFileSync(templatePath, 'utf-8');
+  const bundle = require('./dist/vue-ssr-server-bundle.json');
+  const clientManifest = require('./dist/vue-ssr-client-manifest.json');
   renderer = createBundleRenderer(bundle, {
     runInNewContext: false,
     template,
-    clientManifest,
-  })
+    clientManifest
+  });
 } else {
   const setupDevServer = require('./server.dev');
   // Thanks to the server.dev.js file, we can add support of webpack hot-reloading to our

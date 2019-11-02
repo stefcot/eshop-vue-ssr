@@ -1,9 +1,10 @@
 const merge = require('webpack-merge');
+const path = require('path');
 const defaultConfig = require('./webpack.config.default');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 
 module.exports = merge(defaultConfig, {
-  entry: './src/entry-client',
+  entry: path.resolve(__dirname, '../src/entry-client'),
   optimization: {
     splitChunks: {
       minChunks: Infinity,

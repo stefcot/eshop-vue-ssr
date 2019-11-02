@@ -7,7 +7,6 @@
   "private": true,
   "scripts": {
     "db": "json-server --watch db.json",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "dev-ssr": "node server",
     "start": "cross-env NODE_ENV=production node server",
     "build:client": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack/webpack.config.client.js",
